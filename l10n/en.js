@@ -15,10 +15,10 @@
 },
 "aside" : {
   "nav" : {
-    "HEADER" : "Navigation",
+    "HEADER" : "Smart children school",
     "DASHBOARD" : "Dashboard",
     "CALENDAR" : "Calendar",
-    "EMAIL" : "Email",
+    "EMAIL" : "Annoucement & Summary",
     "WIDGETS" : "Widgets",
     "components" : {
       "COMPONENTS" : "Components",
