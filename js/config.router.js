@@ -529,6 +529,22 @@ angular.module('app')
                     url: '/playlist/{fold}',
                     templateUrl: 'tpl/music.playlist.html'
                 })
+              .state('app.location', {
+                  url: '/location',
+                  templateUrl: 'tpl/page_analysis_location.html',
+              })
+              .state('app.social', {
+                  url: '/social',
+                  templateUrl: 'tpl/page_analysis_social.html',
+              })
+              .state('app.social2', {
+                  url: '/social2',
+                  templateUrl: 'tpl/page_analysis_social2.html',
+              })
+              .state('app.activity', {
+                  url: '/activity',
+                  templateUrl: 'tpl/page_analysis_activity.html',
+              })
       }
     ]
   );
