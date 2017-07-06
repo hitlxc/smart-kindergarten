@@ -1,18 +1,18 @@
 app.controller('MailCtrl', ['$scope', function($scope) {
   $scope.folds = [
-    {name: 'Inbox', filter:''},
-    {name: 'Starred', filter:'starred'},
-    {name: 'Sent', filter:'sent'},
-    {name: 'Important', filter:'important'},
-    {name: 'Draft', filter:'draft'},
-    {name: 'Trash', filter:'trash'}
+    {name: 'Announcement', filter:''},
+    {name: 'Summary', filter:'starred'},
+    {name: 'Notice', filter:'sent'},
+    // {name: 'Important', filter:'important'},
+    // {name: 'Draft', filter:'draft'},
+    // {name: 'Trash', filter:'trash'}
   ];
 
   $scope.labels = [
-    {name: 'Angular', filter:'angular', color:'#23b7e5'},
-    {name: 'Bootstrap', filter:'bootstrap', color:'#7266ba'},
-    {name: 'Client', filter:'client', color:'#fad733'},
-    {name: 'Work', filter:'work', color:'#27c24c'}
+    {name: 'Label 1', filter:'label1', color:'#23b7e5'},
+    {name: 'Label 2', filter:'bootstrap', color:'#7266ba'},
+    {name: 'Label 3', filter:'client', color:'#fad733'},
+    // {name: 'Work', filter:'work', color:'#27c24c'}
   ];
 
   $scope.addLabel = function(){

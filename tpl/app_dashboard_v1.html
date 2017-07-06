@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-sm-6 col-xs-12">
           <h1 class="m-n font-thin h3 text-black">Dashboard</h1>
-          <small class="text-muted">Welcome to teacher's <view></view></small>
+          <small class="text-muted">Welcome to teacher's Dashboard</small>
         </div>
         <div class="col-sm-6 text-right hidden-xs">
           <!--<div class="inline m-r text-left">-->
@@ -35,12 +35,12 @@
     <div class="wrapper-md" ng-controller="FlotChartDemoCtrl">
       <!-- stats -->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item">
-                <div class="h1 text-info font-thin h1">521</div>
-                <span class="text-muted text-xs">New items</span>
+                <div class="h1 text-info font-thin h1">10</div>
+                <span class="text-muted text-xs">New Activity</span>
                 <div class="top text-right w-full">
                   <i class="fa fa-caret-down text-warning m-r-sm"></i>
                 </div>
@@ -48,8 +48,8 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v bg-primary item">
-                <span class="text-white font-thin h1 block">930</span>
-                <span class="text-muted text-xs">Uploads</span>
+                <span class="text-white font-thin h1 block">3</span>
+                <span class="text-muted text-xs">Annoucement</span>
                 <span class="bottom text-right w-full">
                   <i class="fa fa-cloud-upload text-muted m-r-sm"></i>
                 </span>
@@ -57,8 +57,8 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v bg-info item">
-                <span class="text-white font-thin h1 block">432</span>
-                <span class="text-muted text-xs">Comments</span>
+                <span class="text-white font-thin h1 block">20</span>
+                <span class="text-muted text-xs">New Message</span>
                 <span class="top text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
                 </span>
@@ -66,98 +66,98 @@
             </div>
             <div class="col-xs-6">
               <div class="panel padder-v item">
-                <div class="font-thin h1">129</div>
-                <span class="text-muted text-xs">Feeds</span>
+                <div class="font-thin h1">15</div>
+                <span class="text-muted text-xs">children to be picked up</span>
                 <div class="bottom text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 m-b-md">
-              <div class="r bg-light dker item hbox no-border">
-                <div class="col w-xs v-middle hidden-md">
-                  <div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>
-                </div>
-                <div class="col dk padder-v r-r">
-                  <div class="text-primary-dk font-thin h1"><span>$12,670</span></div>
-                  <span class="text-muted text-xs">Revenue, 60% of the goal</span>
-                </div>
-              </div>
-            </div>
+            <!--<div class="col-xs-12 m-b-md">-->
+              <!--<div class="r bg-light dker item hbox no-border">-->
+                <!--<div class="col w-xs v-middle hidden-md">-->
+                  <!--<div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>-->
+                <!--</div>-->
+                <!--<div class="col dk padder-v r-r">-->
+                  <!--<div class="text-primary-dk font-thin h1"><span>$12,670</span></div>-->
+                  <!--<span class="text-muted text-xs">Revenue, 60% of the goal</span>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
           </div>
         </div>
-        <div class="col-md-7">
-          <div class="panel wrapper">
-            <label class="i-switch bg-warning pull-right" ng-init="showSpline=true">
-              <input type="checkbox" ng-model="showSpline">
-              <i></i>
-            </label>
-            <h4 class="font-thin m-t-none m-b text-muted">Latest Campaign</h4>
-            <div ui-jq="plot" ui-refresh="showSpline" ui-options="
-              [
-                { data: {{d0_1}}, label:'TV', points: { show: true, radius: 1}, splines: { show: showSpline, tension: 0.4, lineWidth: 1, fill: 0.8 } },
-                { data: {{d0_2}}, label:'Mag', points: { show: true, radius: 1}, splines: { show: showSpline, tension: 0.4, lineWidth: 1, fill: 0.8 } }
-              ], 
-              {
-                colors: ['{{app.color.info}}', '{{app.color.primary}}'],
-                series: { shadowSize: 3 },
-                xaxis:{ font: { color: '#a1a7ac' } },
-                yaxis:{ font: { color: '#a1a7ac' }, max:20 },
-                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#dce5ec' },
-                tooltip: true,
-                tooltipOpts: { content: 'Visits of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }
-              }
-            " style="height:246px" >
-            </div>
-          </div>
-        </div>
+        <!--<div class="col-md-7">-->
+          <!--<div class="panel wrapper">-->
+            <!--<label class="i-switch bg-warning pull-right" ng-init="showSpline=true">-->
+              <!--<input type="checkbox" ng-model="showSpline">-->
+              <!--<i></i>-->
+            <!--</label>-->
+            <!--<h4 class="font-thin m-t-none m-b text-muted">Latest Campaign</h4>-->
+            <!--<div ui-jq="plot" ui-refresh="showSpline" ui-options="-->
+              <!--[-->
+                <!--{ data: {{d0_1}}, label:'TV', points: { show: true, radius: 1}, splines: { show: showSpline, tension: 0.4, lineWidth: 1, fill: 0.8 } },-->
+                <!--{ data: {{d0_2}}, label:'Mag', points: { show: true, radius: 1}, splines: { show: showSpline, tension: 0.4, lineWidth: 1, fill: 0.8 } }-->
+              <!--],-->
+              <!--{-->
+                <!--colors: ['{{app.color.info}}', '{{app.color.primary}}'],-->
+                <!--series: { shadowSize: 3 },-->
+                <!--xaxis:{ font: { color: '#a1a7ac' } },-->
+                <!--yaxis:{ font: { color: '#a1a7ac' }, max:20 },-->
+                <!--grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#dce5ec' },-->
+                <!--tooltip: true,-->
+                <!--tooltipOpts: { content: 'Visits of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }-->
+              <!--}-->
+            <!--" style="height:246px" >-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
       </div>
       <!-- / stats -->
 
       <!-- service -->
-      <div class="panel hbox hbox-auto-xs no-border">
-        <div class="col wrapper">
-          <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-          <h4 class="font-thin m-t-none m-b-none text-primary-lt">Managed Services</h4>
-          <span class="m-b block text-sm text-muted">Service report of this year (updated 1 hour ago)</span>
-          <div ui-jq="plot" ui-options="
-            [
-              { data: {{d4}}, lines: { show: true, lineWidth: 1, fill:true, fillColor: { colors: [{opacity: 0.2}, {opacity: 0.8}] } } }
-            ], 
-            {
-              colors: ['{{app.color.light}}'],
-              series: { shadowSize: 3 },
-              xaxis:{ show:false },
-              yaxis:{ font: { color: '#a1a7ac' } },
-              grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#dce5ec' },
-              tooltip: true,
-              tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }
-            }
-          " style="height:240px" >
-          </div>
-        </div>
-        <div class="col wrapper-lg w-lg bg-light dk r-r">
-          <h4 class="font-thin m-t-none m-b">Reports</h4>
-          <div class="">
-            <div class="">
-              <span class="pull-right text-primary">60%</span>
-              <span>Consulting</span>
-            </div>
-            <progressbar value="60" class="progress-xs m-t-sm bg-white" animate="true" type="primary"></progressbar>
-            <div class="">
-              <span class="pull-right text-info">35%</span>
-              <span>Online tutorials</span>
-            </div>
-            <progressbar value="35" class="progress-xs m-t-sm bg-white" animate="true" type="info"></progressbar>
-            <div class="">
-              <span class="pull-right text-warning">25%</span>
-              <span>EDU management</span>
-            </div>
-            <progressbar value="25" class="progress-xs m-t-sm bg-white" animate="true" type="warning"></progressbar>
-          </div>
-          <p class="text-muted">Dales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-        </div>
-      </div>
+      <!--<div class="panel hbox hbox-auto-xs no-border">-->
+        <!--<div class="col wrapper">-->
+          <!--<i class="fa fa-circle-o text-info m-r-sm pull-right"></i>-->
+          <!--<h4 class="font-thin m-t-none m-b-none text-primary-lt">Managed Services</h4>-->
+          <!--<span class="m-b block text-sm text-muted">Service report of this year (updated 1 hour ago)</span>-->
+          <!--<div ui-jq="plot" ui-options="-->
+            <!--[-->
+              <!--{ data: {{d4}}, lines: { show: true, lineWidth: 1, fill:true, fillColor: { colors: [{opacity: 0.2}, {opacity: 0.8}] } } }-->
+            <!--], -->
+            <!--{-->
+              <!--colors: ['{{app.color.light}}'],-->
+              <!--series: { shadowSize: 3 },-->
+              <!--xaxis:{ show:false },-->
+              <!--yaxis:{ font: { color: '#a1a7ac' } },-->
+              <!--grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#dce5ec' },-->
+              <!--tooltip: true,-->
+              <!--tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }-->
+            <!--}-->
+          <!--" style="height:240px" >-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col wrapper-lg w-lg bg-light dk r-r">-->
+          <!--<h4 class="font-thin m-t-none m-b">Reports</h4>-->
+          <!--<div class="">-->
+            <!--<div class="">-->
+              <!--<span class="pull-right text-primary">60%</span>-->
+              <!--<span>Consulting</span>-->
+            <!--</div>-->
+            <!--<progressbar value="60" class="progress-xs m-t-sm bg-white" animate="true" type="primary"></progressbar>-->
+            <!--<div class="">-->
+              <!--<span class="pull-right text-info">35%</span>-->
+              <!--<span>Online tutorials</span>-->
+            <!--</div>-->
+            <!--<progressbar value="35" class="progress-xs m-t-sm bg-white" animate="true" type="info"></progressbar>-->
+            <!--<div class="">-->
+              <!--<span class="pull-right text-warning">25%</span>-->
+              <!--<span>EDU management</span>-->
+            <!--</div>-->
+            <!--<progressbar value="25" class="progress-xs m-t-sm bg-white" animate="true" type="warning"></progressbar>-->
+          <!--</div>-->
+          <!--<p class="text-muted">Dales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>-->
+        <!--</div>-->
+      <!--</div>-->
       <!-- / service -->
 
       <!-- tasks -->
@@ -237,45 +237,45 @@
                 <i class="fa fa-circle text-info m-r-xs m-l-sm"></i> 30
                 <i class="fa fa-circle text-warning m-r-xs m-l-sm"></i> 98
               </span>
-              <h4 class="font-thin m-t-none m-b-none text-muted">Teammates</h4>              
+              <h4 class="font-thin m-t-none m-b-none text-muted">Dismissal status</h4>
             </div>
             <ul class="list-group list-group-lg m-b-none">
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a1.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-primary inline m-t-sm">Admin</span>
+                <span class="pull-right label bg-primary inline m-t-sm">Wait</span>
                 <a href>Damon Parker</a>
               </li>
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a2.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-info inline m-t-sm">Member</span>
+                <span class="pull-right label bg-primary inline m-t-sm">Wait</span>
                 <a href>Joe Waston</a>
               </li>
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a3.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-warning inline m-t-sm">Editor</span>
+                <span class="pull-right label bg-info inline m-t-sm">Stay</span>
                 <a href>Jannie Dvis</a>
               </li>
               <li class="list-group-item">
                 <a href class="thumb-sm m-r">
                   <img src="img/a4.jpg" class="r r-2x">
                 </a>
-                <span class="pull-right label bg-warning inline m-t-sm">Editor</span>
+                <span class="pull-right label bg-warning inline m-t-sm">Depart</span>
                 <a href>Emma Welson</a>
               </li>
             </ul>
             <div class="panel-footer">
               <span class="pull-right badge badge-bg m-t-xs">32</span>
-              <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i>Add Teammate</button>
+              <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i>Add Status</button>
             </div>
           </div>
         </div>
-        <div class="col-md-6">            
+        <div class="col-md-6">
           <div class="list-group list-group-lg list-group-sp">
             <a herf class="list-group-item clearfix">
               <span class="pull-left thumb-sm avatar m-r">

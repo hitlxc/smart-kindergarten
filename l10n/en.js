@@ -18,7 +18,7 @@
     "HEADER" : "Smart children school",
     "DASHBOARD" : "Dashboard",
     "CALENDAR" : "Calendar",
-    "EMAIL" : "Annoucement & Summary",
+    "EMAIL" : "Annoucement & Summary & notice",
     "WIDGETS" : "Widgets",
     "components" : {
       "COMPONENTS" : "Components",
