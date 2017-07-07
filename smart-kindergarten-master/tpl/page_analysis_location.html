@@ -1,0 +1,455 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">Dashboard</h1>
+          <small class="text-muted">Welcome to angulr application</small>
+        </div>
+        <div class="col-sm-6 text-right hidden-xs">
+          <div class="inline m-r text-left">
+            <div class="m-b-xs">1290 <span class="text-muted">items</span></div>
+            <div ng-init="data1=[ 106,108,110,105,110,109,105,104,107,109,105,100,105,102,101,99,98 ]" 
+              ui-jq="sparkline" 
+              ui-options="{{data1}}, {type:'bar', height:20, barWidth:5, barSpacing:1, barColor:'#dce5ec'}" 
+              class="sparkline inline">loading...
+            </div>
+          </div>
+          <div class="inline text-left">
+            <div class="m-b-xs">$30,000 <span class="text-muted">revenue</span></div>
+            <div ng-init="data2=[ 105,102,106,107,105,104,101,99,98,109,105,100,108,110,105,110,109 ]" 
+              ui-jq="sparkline" 
+              ui-options="{{data2}}, {type:'bar', height:20, barWidth:5, barSpacing:1, barColor:'#dce5ec'}" 
+              class="sparkline inline">loading...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md" ng-controller="FlotChartDemoCtrl">
+      <div id="main" style="width: 1000px;height:1000px;"></div>
+  <script src="js/chart/echarts.js"></script>
+  <script src="js/chart/jquery-3.1.0.min.js"></script>
+  <script type="text/javascript" src="js/chart/dataTools.js"></script>
+  <script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+var uploadedDataURL = "http://gallery.echartsjs.com/asset/get/s/data-1469613131944-r1NUN-Ud.json";
+
+$.getJSON(uploadedDataURL, function (rawData) {
+    var lines = rawData.track.slice(0, rawData.track.length - 1).map(function (seg, idx) {
+        return [{
+            coord: seg.coord,
+            value: seg.elevation
+        }, {
+            coord: rawData.track[idx + 1].coord
+        }];
+    });
+
+    var waypointsData = rawData.waypoints.map(function (item) {
+        return {
+            name: item.name,
+            value: item.coord.concat([item.elevation])
+        };
+    });
+
+    myChart.setOption(option = {
+        animation: false,
+        bmap: {
+            center: [120.14266322374, 30.235018034923],
+            zoom: 14,
+            roam: true
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        visualMap: {
+            top: 'top',
+            min: 0,
+            max: 500,
+            text: ['Time 500 minutes', 'time 0 minutes'],
+            seriesIndex: [0, 4],
+            inRange: {
+                color: ['#42810f', '#c9c367', '#b07a17', '#a23a05']
+            }
+        },
+        grid: [{
+            right: 10,
+            height: 140,
+            width: '50%',
+            bottom: 10,
+        }, {
+            show: true,
+            right: 0,
+            height: 170,
+            width: '53%',
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.7)'
+        }],
+        xAxis: {
+            type: 'category',
+            show: false,
+            inverse: true,
+            data: rawData.track.map(function (seg) {
+                return seg.coord.join(',');
+            })
+        },
+        yAxis: {
+            position: 'right',
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                inside: true,
+                formatter: '{value} m',
+                textStyle: {
+                    color: '#ddd'
+                }
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#ddd'
+                }  
+            },
+            axisTick: {
+                inside: true,
+                lineStyle: {
+                    color: '#ddd'
+                }
+            },
+            max: 500,
+            splitNumber: 2
+        },
+        series: [{
+            type: 'lines',
+            coordinateSystem: 'bmap',
+            data: lines,
+            tooltip: {
+                show: false
+            },
+            lineStyle: {
+                normal: {
+                    width: 6,
+                    opacity: 1,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)',
+                    shadowBlur: 3
+                },
+                emphasis: {
+                    color: '#f6fd40'
+                }
+            },
+            animationDelay: function (idx) {
+                return idx * 20;
+            }
+        }, {
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            symbolSize: [10, 5],
+            symbolOffset: [7, 0],
+            silent: true,
+            tooltip: {
+                show: false  
+            },
+            itemStyle: {
+                normal: {
+                    color: 'red',
+                    borderWidth: 1,
+                    borderColor: '#fff'
+                }
+            },
+            data: waypointsData
+        }, {
+            type: 'scatter',
+            coordinateSystem: 'bmap',
+            symbol: 'path://M54.227,12.611c-0.338-0.336-0.736-0.505-1.196-0.505c-0.229,0-0.712,0.188-1.446,0.559  c-0.735,0.372-1.515,0.786-2.336,1.248c-0.823,0.459-1.797,0.875-2.921,1.247c-1.123,0.371-2.163,0.559-3.12,0.559  c-0.884,0-1.664-0.168-2.336-0.505c-2.229-1.044-4.168-1.823-5.814-2.337c-1.646-0.513-3.416-0.771-5.311-0.771  c-3.272,0-6.999,1.064-11.177,3.188c-0.862,0.43-1.48,0.763-1.88,1.007l-0.397-2.911c0.897-0.779,1.476-1.914,1.476-3.195  c0-2.347-1.902-4.249-4.249-4.249c-2.347,0-4.249,1.902-4.249,4.249c0,1.531,0.818,2.862,2.032,3.61l5.74,42.09  c0.171,1.253,1.243,2.162,2.474,2.162c0.112,0,0.226-0.007,0.341-0.022c1.368-0.188,2.326-1.447,2.139-2.815L19.69,38.303  c4.186-2.077,7.807-3.124,10.853-3.124c1.293,0,2.554,0.193,3.783,0.583c1.23,0.391,2.253,0.815,3.067,1.274  c0.814,0.46,1.775,0.886,2.88,1.274c1.107,0.39,2.2,0.585,3.279,0.585c2.726,0,5.991-1.027,9.796-3.08  c0.478-0.248,0.828-0.492,1.049-0.731c0.221-0.239,0.332-0.579,0.332-1.021V13.806C54.729,13.347,54.562,12.948,54.227,12.611z',
+            symbolSize: 30,
+            symbolOffset: [15, -15],
+            tooltip: {
+                show: false  
+            },
+            itemStyle: {
+                normal: {
+                    color: 'red',
+                    borderWidth: 1,
+                    borderColor: '#fff'
+                }
+            },
+            label: {
+                normal: {
+                    textStyle: {
+                        fontWeight: 'bold',
+                        color: '#111'
+                    },
+                    show: true,
+                    position: 'right',
+                    formatter: '{b}'
+                }
+            },
+            data: waypointsData
+        }, {
+            type: 'scatter',
+            name: 'marker',
+            coordinateSystem: 'bmap',
+            symbolSize: 100,
+            symbolOffset: [0, -50],
+            itemStyle: {
+                normal: {
+                    color: '#555',
+                    borderColor: '#111',
+                    borderWidth: 5
+                }
+            },
+            tooltip: {
+                show: false  
+            },
+            symbol: 'path://M21.9,15c0,0-8.7,9.9-9.5,11c-0.9,1.1-2.3,0.3-2.3,0.3  s-8.8-9.7-9.8-11.4C-0.7,13.3,1.2,13,1.2,13H6V1c0-0.6,0.4-1,1-1h8c0.6,0,1,0.4,1,1v12h4.7C23.1,13,21.9,15,21.9,15z',
+            data: []
+        }, {
+            type: 'line',
+            showSymbol: false,
+            hoverAnimation: false,
+            areaStyle: {
+                normal: {}
+            },
+            z: 9999,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false
+                },
+                transitionDuration: 0,
+                formatter: function (param) {
+                    return param[0].value;
+                },
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            areaStyle: {
+                normal: {}
+            },
+            data: rawData.track.map(function (seg) {
+                return seg.elevation;
+            })
+        }]
+    });
+    
+    myChart.on('showtip', function (param) {
+        if (param.seriesIndex === 4) {
+            myChart.setOption({
+                series: [{
+                    name: 'marker',
+                    animation: false,
+                    data: [rawData.track[param.dataIndex].coord]
+                }]
+            });
+        }
+    });
+
+    
+});
+    </script>
+    </div>
+  </div>
+  <!-- / main -->
+  <!-- right col -->
+  <div class="col w-md bg-white-only b-l bg-auto no-border-xs">
+    <tabset class="nav-tabs-alt" justified="true">
+      <tab>
+        <tab-heading>
+          <i class="glyphicon glyphicon-user text-md text-muted wrapper-sm"></i>
+        </tab-heading>
+        <div class="wrapper-md">
+          <div class="m-b-sm text-md">Who to follow</div>
+          <ul class="list-group no-bg no-borders pull-in">
+            <li class="list-group-item">
+              <a herf class="pull-left thumb-sm avatar m-r">
+                <img src="img/a4.jpg" alt="..." class="img-circle">
+                <i class="on b-white bottom"></i>
+              </a>
+              <div class="clear">
+                <div><a href>Chris Fox</a></div>
+                <small class="text-muted">Designer, Blogger</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <a herf class="pull-left thumb-sm avatar m-r">
+                <img src="img/a5.jpg" alt="..." class="img-circle">
+                <i class="on b-white bottom"></i>
+              </a>
+              <div class="clear">
+                <div><a href>Mogen Polish</a></div>
+                <small class="text-muted">Writter, Mag Editor</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <a herf class="pull-left thumb-sm avatar m-r">
+                <img src="img/a6.jpg" alt="..." class="img-circle">
+                <i class="busy b-white bottom"></i>
+              </a>
+              <div class="clear">
+                <div><a href>Joge Lucky</a></div>
+                <small class="text-muted">Art director, Movie Cut</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <a herf class="pull-left thumb-sm avatar m-r">
+                <img src="img/a7.jpg" alt="..." class="img-circle">
+                <i class="away b-white bottom"></i>
+              </a>
+              <div class="clear">
+                <div><a href>Folisise Chosielie</a></div>
+                <small class="text-muted">Musician, Player</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <a herf class="pull-left thumb-sm avatar m-r">
+                <img src="img/a8.jpg" alt="..." class="img-circle">
+                <i class="away b-white bottom"></i>
+              </a>
+              <div class="clear">
+                <div><a href>Aron Gonzalez</a></div>
+                <small class="text-muted">Designer</small>
+              </div>
+            </li>
+          </ul>
+          <div class="text-center">
+            <a href class="btn btn-sm btn-primary padder-md m-b">More Connections</a>
+          </div>
+        </div>
+      </tab>
+      <tab>
+        <tab-heading>
+          <i class="glyphicon glyphicon-comment text-md text-muted wrapper-sm"></i>
+        </tab-heading>
+        <div class="wrapper-md">
+          <div class="m-b-sm text-md">Chat</div>
+          <ul class="list-group no-borders pull-in auto">
+            <li class="list-group-item">
+              <span class="pull-left thumb-sm m-r"><img src="img/a1.jpg" alt="..." class="img-circle"></span>
+              <a href class="text-muted" ui-toggle-class="show" target=".app-aside-right"><i class="fa fa-comment-o pull-right m-t-sm text-sm"></i></a>
+              <div class="clear">
+                <div><a href="">Chris Fox</a></div>
+                <small class="text-muted">about 2 minutes ago</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-left thumb-sm m-r"><img src="img/a2.jpg" alt="..." class="img-circle"></span>
+              <a href class="text-muted" ui-toggle-class="show" target=".app-aside-right"><i class="fa fa-comment-o pull-right m-t-sm text-sm"></i></a>
+              <div class="clear">
+                <div><a href="">Amanda Conlan</a></div>
+                <small class="text-muted">about 2 hours ago</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-left thumb-sm m-r"><img src="img/a3.jpg" alt="..." class="img-circle"></span>
+              <a href class="text-muted" ui-toggle-class="show" target=".app-aside-right"><i class="fa fa-comment-o pull-right m-t-sm text-sm"></i></a>
+              <div class="clear">
+                <div><a href="">Dan Doorack</a></div>
+                <small class="text-muted">3 days ago</small>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <span class="pull-left thumb-sm m-r"><img src="img/a4.jpg" alt="..." class="img-circle"></span>
+              <a href class="text-muted" ui-toggle-class="show" target=".app-aside-right"><i class="fa fa-comment-o pull-right m-t-sm text-sm"></i></a>
+              <div class="clear">
+                <div><a href="">Lauren Taylor</a></div>
+                <small class="text-muted">about 2 minutes ago</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </tab>
+      <tab>
+        <tab-heading>
+          <i class="glyphicon glyphicon-transfer text-md text-muted wrapper-sm"></i>
+        </tab-heading>
+        <div class="wrapper-md">
+          <div class="m-b-sm text-md">Transaction</div>
+          <ul class="list-group list-group-sm list-group-sp list-group-alt auto m-t">
+            <li class="list-group-item">
+              <span class="text-muted">Transfer to Jacob at 3:00 pm</span>
+              <span class="block text-md text-info">B 15,000.00</span>
+            </li>
+            <li class="list-group-item">
+              <span class="text-muted">Got from Mike at 1:00 pm</span>
+              <span class="block text-md text-primary">B 23,000.00</span>
+            </li>
+            <li class="list-group-item">
+              <span class="text-muted">Sponsored ORG at 9:00 am</span>
+              <span class="block text-md text-warning">B 3,000.00</span>
+            </li>
+            <li class="list-group-item">
+              <span class="text-muted">Send to Jacob at 8:00 am</span>
+              <span class="block text-md">B 11,000.00</span>
+            </li>
+          </ul>
+        </div>
+      </tab>      
+    </tabset>
+    <div class="padder-md">      
+      <!-- streamline -->
+      <div class="m-b text-md">Recent Activity</div>
+      <div class="streamline b-l m-b">
+        <div class="sl-item">
+          <div class="m-l">
+            <div class="text-muted">5 minutes ago</div>
+            <p><a href class="text-info">Jessi</a> commented your post.</p>
+          </div>
+        </div>
+        <div class="sl-item">
+          <div class="m-l">
+            <div class="text-muted">11:30</div>
+            <p>Join comference</p>
+          </div>
+        </div>
+        <div class="sl-item b-success b-l">
+          <div class="m-l">
+            <div class="text-muted">10:30</div>
+            <p>Call to customer <a href class="text-info">Jacob</a> and discuss the detail.</p>
+          </div>
+        </div>
+        <div class="bg-info wrapper-sm m-l-n m-r-n m-b r r-2x">
+          Create tasks for the team
+        </div>
+        <div class="sl-item b-primary b-l">
+          <div class="m-l">
+            <div class="text-muted">Wed, 25 Mar</div>
+            <p>Finished task <a href class="text-info">Testing</a>.</p>
+          </div>
+        </div>
+        <div class="sl-item b-warning b-l">
+          <div class="m-l">
+            <div class="text-muted">Thu, 10 Mar</div>
+            <p>Trip to the moon</p>
+          </div>
+        </div>
+        <div class="sl-item b-info b-l">
+          <div class="m-l">
+            <div class="text-muted">Sat, 5 Mar</div>
+            <p>Prepare for presentation</p>
+          </div>
+        </div>
+        <div class="sl-item b-l">
+          <div class="m-l">
+            <div class="text-muted">Sun, 11 Feb</div>
+            <p><a href class="text-info">Jessi</a> assign you a task <a href class="text-info">Mockup Design</a>.</p>
+          </div>
+        </div>
+        <div class="sl-item b-l">
+          <div class="m-l">
+            <div class="text-muted">Thu, 17 Jan</div>
+            <p>Follow up to close deal</p>
+          </div>
+        </div>
+      </div>
+      <!-- / streamline -->
+    </div>
+  </div>
+  <!-- / right col -->
+</div>
